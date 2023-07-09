@@ -11,6 +11,10 @@ In concert, you run the extraction script against the docx file, then run the pr
 
 ## Usage
 
+Generally, my work flow is to write, and as I do I take screen shots of software running in an isolated VM.  I usually just copy and paste the screenshots straight into Word.  Then after my editor makes her first pass, she sends back all my required corrections.  On the second pass, I correct the manuscript, then pull the images out with the extract script, convert with the process script, then go back through the copy and replace the images manually.  I could probably automate that too, but I take the opportunity as I'm replaceing to make sure the image numbering is right.
+
+The commands run the scripts are:
+
 ```python3 extract_images.py <path-to-docx-file.docx>```
     
 ```python3 process_screenshots.py <input_folder> <output_folder>```
@@ -18,7 +22,7 @@ In concert, you run the extraction script against the docx file, then run the pr
 
 ## Requirements
 
-I used the pillow library to handle the image processing.
+I used the ```pillow``` library to handle the image processing, and ```python-docx``` to process Word files.  The requirements are in the ```requirements.txt``` file per usual with Python projects.
 
 ## You can use this for whatever you want
 
