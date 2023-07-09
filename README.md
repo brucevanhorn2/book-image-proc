@@ -12,6 +12,7 @@ In concert, you run the extraction script against the docx file, then run the pr
 ## Usage
 
 ```python3 extract_images.py <path-to-docx-file.docx>```
+    
 ```python3 process_screenshots.py <input_folder> <output_folder>```
 
 
