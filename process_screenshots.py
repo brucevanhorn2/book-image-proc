@@ -28,6 +28,9 @@ for file_name in os.listdir(input_folder):
         # Open the image
         image = Image.open(input_file)
 
+        # Convert the image to RGB mode
+        image = image.convert("RGB")
+
         # Calculate the new size based on the desired DPI
         dpi = (300, 300)
         width = int(image.width * dpi[0] / image.info['dpi'][0])
@@ -49,4 +52,3 @@ for file_name in os.listdir(input_folder):
         image_bw.save(output_bw, "JPEG", dpi=dpi)
 
         print(f"Conversion completed for: {file_name}. Output files: {output_color}, {output_bw}")
-        
