@@ -1,9 +1,6 @@
 import os
 import sys
 from docx import Document
-from docx.oxml import OxmlElement
-from docx.oxml.ns import nsdecls
-from docx.oxml.ns import qn
 
 
 def extract_images_from_docx(docx_file, output_folder):
@@ -16,11 +13,11 @@ def extract_images_from_docx(docx_file, output_folder):
     # Counter for the image index
     image_index = 0
 
-    # Iterate over all image parts in the document
-    for rel in doc.part.rels.values():
-        if "image" in rel.reltype:
+    # Iterate over all inline shapes in the document
+    for inline_shape in doc.inline_shapes:
+        if inline_shape.type == 3:  # InlineShapeType.PICTURE
             # Get the image data
-            image_data = rel.target_part.blob
+            image_data = inline_shape._inline.graphic.graphicData.pic.blip.getbytes()
 
             # Save the image to the output folder
             image_filename = f"image_{image_index}.png"
@@ -44,4 +41,3 @@ if __name__ == "__main__":
     output_folder = sys.argv[2]
 
     extract_images_from_docx(docx_file, output_folder)
-    
