@@ -1,3 +1,6 @@
 venv
 __pychache__
 *.backup
+dist
+build
+*.spec
