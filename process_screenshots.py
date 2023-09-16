@@ -28,13 +28,19 @@ for file_name in os.listdir(input_folder):
         # Open the image
         image = Image.open(input_file)
 
+        # Sometimes there isn't a DPI in the info and we kinda need it.
+        original_dpi = image.info.get("dpi", (72.0, 72.0))
+
         # Convert the image to RGB mode
         image = image.convert("RGB")
 
         # Calculate the new size based on the desired DPI
         dpi = (300, 300)
-        width = int(image.width * dpi[0] / image.info['dpi'][0])
-        height = int(image.height * dpi[1] / image.info['dpi'][1])
+
+        # Some images encode width and height information as tuples, while others just use integers.
+        # I'm assuming parity, so if width is a tuple, height probably is too.
+        width = int(image.width * dpi[0] / original_dpi[0])
+        height = int(image.height * dpi[1] / original_dpi[1])
         size = (width, height)
 
         # Resize the image
